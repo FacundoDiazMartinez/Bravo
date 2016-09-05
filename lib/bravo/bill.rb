@@ -82,7 +82,8 @@ module Bravo
               "Importe" => i[2] }
       }
 
-      fecaereq = {"FeCAEReq" => {
+      if not Bravo.own_iva_cond == :responsable_monotributo
+        fecaereq = {"FeCAEReq" => {
                     "FeCabReq" => Bravo::Bill.header(cbte_type),
                     "FeDetReq" => {
                       "FECAEDetRequest" => {
@@ -93,11 +94,24 @@ module Bravo
                         "MonId"       => Bravo::MONEDAS[moneda][:codigo],
                         "MonCotiz"    => exchange_rate,
                         "ImpOpEx"     => 0.00,
-                        if not Bravo.own_iva_cond == :responsable_monotributo
-                          "Iva"         => { "AlicIva" => array_ivas },
-                        end
+                        "ImpTrib"     => 0.00,
+                        "Iva"         => { "AlicIva" => array_ivas }
+                    }}}}
+      else
+        fecaereq = {"FeCAEReq" => {
+                    "FeCabReq" => Bravo::Bill.header(cbte_type),
+                    "FeDetReq" => {
+                      "FECAEDetRequest" => {
+                        "Concepto"    => Bravo::CONCEPTOS[concepto],
+                        "DocTipo"     => Bravo::DOCUMENTOS[documento],
+                        "CbteFch"     => fecha_emision,
+                        "ImpTotConc"  => 0.00,
+                        "MonId"       => Bravo::MONEDAS[moneda][:codigo],
+                        "MonCotiz"    => exchange_rate,
+                        "ImpOpEx"     => 0.00,
                         "ImpTrib"     => 0.00
                     }}}}
+      end
 
       detail = fecaereq["FeCAEReq"]["FeDetReq"]["FECAEDetRequest"]
 
