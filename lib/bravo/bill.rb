@@ -96,7 +96,7 @@ module Bravo
                         if not Bravo.own_iva_cond == :responsable_monotributo
                           "Iva"         => { "AlicIva" => array_ivas },
                         end
-                        "ImpTrib"     => 0.00,
+                        "ImpTrib"     => 0.00
                     }}}}
 
       detail = fecaereq["FeCAEReq"]["FeDetReq"]["FECAEDetRequest"]
