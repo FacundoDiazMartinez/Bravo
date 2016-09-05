@@ -93,16 +93,22 @@ module Bravo
                         "MonId"       => Bravo::MONEDAS[moneda][:codigo],
                         "MonCotiz"    => exchange_rate,
                         "ImpOpEx"     => 0.00,
+                        if not Bravo.own_iva_cond == :responsable_monotributo
+                          "Iva"         => { "AlicIva" => array_ivas },
+                        end
                         "ImpTrib"     => 0.00,
-                        "Iva"         => { "AlicIva" => array_ivas }                          
                     }}}}
 
       detail = fecaereq["FeCAEReq"]["FeDetReq"]["FECAEDetRequest"]
 
       detail["DocNro"]    = doc_num
       detail["ImpNeto"]   = net.to_f
-      detail["ImpIVA"]    = iva_sum
-      detail["ImpTotal"]  = total.to_f.round(2)
+      if not Bravo.own_iva_cond == :responsable_monotributo
+        detail["ImpIVA"]    = iva_sum
+        detail["ImpTotal"]  = total.to_f.round(2)
+      else
+        detail["ImpTotal"]  = net.to_f
+      end
       detail["CbteDesde"] = detail["CbteHasta"] = next_bill_number
 
       unless concepto == "Productos" # En "Productos" ("01"), si se mandan estos parámetros la afip rechaza.
