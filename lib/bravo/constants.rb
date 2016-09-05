@@ -41,6 +41,14 @@ module Bravo
       :nota_credito_b => "08",
       :nota_debito_a => "02",
       :nota_debito_b => "07"
+    },
+    :responsable_monotributo => {
+      :responsable_inscripto => "11",
+      :consumidor_final => "11",
+      :exento => "11",
+      :responsable_monotributo => "11",
+      :nota_credito_c => "13",
+      :nota_debito_c => "12"
     }
   }
 end
