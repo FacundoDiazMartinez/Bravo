@@ -11,14 +11,10 @@ module Bravo
     "08"=>"Nota de Credito B",
     "09"=>"Recibos B",
     "10"=>"Notas de Venta al contado B",
-    "34"=>"Cbtes. A del Anexo I, Apartado A,inc.f),R.G.Nro. 1415",
-    "35"=>"Cbtes. B del Anexo I,Apartado A,inc. f),R.G. Nro. 1415",
-    "39"=>"Otros comprobantes A que cumplan con R.G.Nro. 1415",
-    "40"=>"Otros comprobantes B que cumplan con R.G.Nro. 1415",
-    "60"=>"Cta de Vta y Liquido prod. A",
-    "61"=>"Cta de Vta y Liquido prod. B",
-    "63"=>"Liquidacion A",
-    "64"=>"Liquidacion B"
+    "11"=>"Factura C",
+    "12"=>"Nota de Debito C",
+    "13"=>"Nota de Credito C",
+    "14"=>"Recibos C",
   }
 
   CONCEPTOS = {"Productos"=>"01", "Servicios"=>"02", "Productos y Servicios"=>"03"}
