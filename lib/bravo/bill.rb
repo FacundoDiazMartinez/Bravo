@@ -9,6 +9,7 @@ module Bravo
       Bravo::AuthData.fetch
       @client         = Savon::Client.new do
         wsdl.document = Bravo.service_url
+        log_level = :debug
         http.auth.ssl.cert_key_file = Bravo.pkey
         http.auth.ssl.cert_file = Bravo.cert
         http.auth.ssl.verify_mode = :none
