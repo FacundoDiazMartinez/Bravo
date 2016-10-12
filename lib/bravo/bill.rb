@@ -62,7 +62,7 @@ module Bravo
     def authorize
       setup_bill
       response = client.call :fecae_solicitar do |soap|
-        message = body
+        soap.message = body
       end
 
       setup_response(response.to_hash)
@@ -138,8 +138,9 @@ module Bravo
     end
 
     def next_bill_number
+      var = var = {"Auth" => Bravo.auth_hash,"PtoVta" => Bravo.sale_point, "CbteTipo" => cbte_type}
       resp = client.call :fe_comp_ultimo_autorizado do
-        message(auth: Bravo.auth_hash, ptovta: Bravo.sale_point, cbtetipo: cbte_type)
+        message(var)
       end
 
       resp.to_hash[:fe_comp_ultimo_autorizado_response][:fe_comp_ultimo_autorizado_result][:cbte_nro].to_i + 1
