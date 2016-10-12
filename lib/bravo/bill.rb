@@ -61,8 +61,8 @@ module Bravo
 
     def authorize
       setup_bill
-      response = client.call :fecae_solicitar do |soap|
-        soap.message = body
+      response = client.call :fecae_solicitar do
+        message(body)
       end
 
       setup_response(response.to_hash)
