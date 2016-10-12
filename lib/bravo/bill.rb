@@ -7,7 +7,7 @@ module Bravo
 
     def initialize(attrs = {})
       Bravo::AuthData.fetch
-      @client         = Savon.client.new(
+      @client         = Savon.client(
         wsdl:  Bravo.service_url,
         log_level:  :debug,
         ssl_cert_key_file: Bravo.pkey,
