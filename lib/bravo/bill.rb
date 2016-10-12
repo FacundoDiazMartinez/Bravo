@@ -7,8 +7,12 @@ module Bravo
 
     def initialize(attrs = {})
       Bravo::AuthData.fetch
+      namespaces = {
+        "xmlns" => "http://ar.gov.afip.dif.FEV1/"
+        }
       @client         = Savon.client(
         wsdl:  Bravo.service_url,
+        namespaces: namespaces,
         log_level:  :debug,
         ssl_cert_key_file: Bravo.pkey,
         ssl_cert_file: Bravo.cert,
@@ -35,7 +39,6 @@ module Bravo
     def exchange_rate
       return 1 if moneda == :peso
       response = client.call :fe_param_get_cotizacion do
-        namespaces["xmlns"] = "http://ar.gov.afip.dif.FEV1/"
         message = body.merge!({"MonId" => Bravo::MONEDAS[moneda][:codigo]})
       end
       response.to_hash[:fe_param_get_cotizacion_response][:fe_param_get_cotizacion_result][:result_get][:mon_cotiz].to_f
@@ -59,7 +62,6 @@ module Bravo
     def authorize
       setup_bill
       response = client.call :fecae_solicitar do |soap|
-        namespaces["xmlns"] = "http://ar.gov.afip.dif.FEV1/"
         message = body
       end
 
@@ -137,7 +139,6 @@ module Bravo
 
     def next_bill_number
       resp = client.call :fe_comp_ultimo_autorizado do
-        namespaces["xmlns"] = "http://ar.gov.afip.dif.FEV1/"
         message = {"Auth" => Bravo.auth_hash, "PtoVta" => Bravo.sale_point, "CbteTipo" => cbte_type}
       end
 
