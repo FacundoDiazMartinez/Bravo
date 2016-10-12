@@ -60,7 +60,7 @@ module Bravo
     end
 
     def authorize
-      setup_bill
+      body = setup_bill
       response = client.call :fecae_solicitar do
         message(body)
       end
@@ -138,7 +138,7 @@ module Bravo
     end
 
     def next_bill_number
-      var = var = {"Auth" => Bravo.auth_hash,"PtoVta" => Bravo.sale_point, "CbteTipo" => cbte_type}
+      var = {"Auth" => Bravo.auth_hash,"PtoVta" => Bravo.sale_point, "CbteTipo" => cbte_type}
       resp = client.call :fe_comp_ultimo_autorizado do
         message(var)
       end
