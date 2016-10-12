@@ -1,9 +1,9 @@
 source "http://rubygems.org"
 
 platforms :ruby_19 do
-  gem "httpi", "0.7.9"
+  gem "httpi", "~> 2.3"
 end
-gem "savon", "~> 2.11.0" #"0.9.7"
+gem "savon", "~> 2.9.0"
 
 group :development do
   platforms :ruby_18 do
@@ -14,8 +14,8 @@ group :development do
     gem 'ruby-debug19', "0.11.6"
   end
   gem "rspec", "~> 2.4.0"
-  gem "bundler", "~> 1.0.0"
-  gem "jeweler", "~> 1.5.1"
-  gem "rcov", ">= 0"
+  gem "bundler"
+  gem "jeweler"
+  #gem "rcov"
 end
 
