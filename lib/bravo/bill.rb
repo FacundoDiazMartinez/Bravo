@@ -139,7 +139,7 @@ module Bravo
 
     def next_bill_number
       resp = client.call :fe_comp_ultimo_autorizado do
-        message({"Auth" => Bravo.auth_hash, "PtoVta" => Bravo.sale_point, "CbteTipo" => cbte_type})
+        message(auth: Bravo.auth_hash, ptovta: Bravo.sale_point, cbtetipo: cbte_type)
       end
 
       resp.to_hash[:fe_comp_ultimo_autorizado_response][:fe_comp_ultimo_autorizado_result][:cbte_nro].to_i + 1
