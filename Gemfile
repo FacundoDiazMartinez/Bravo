@@ -1,9 +1,9 @@
 source "http://rubygems.org"
 
 platforms :ruby_19 do
-  gem "httpi", "~> 1.1.0"
+  gem "httpi"
 end
-gem "savon", "~>1.2.0"
+gem "savon", "~> 2.11.0"
 
 group :development do
   platforms :ruby_18 do
@@ -18,5 +18,3 @@ group :development do
   gem "jeweler"
   #gem "rcov"
 end
-
-
