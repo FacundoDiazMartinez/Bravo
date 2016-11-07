@@ -1,5 +1,5 @@
 module Bravo
-  class Bill
+  class ComprobanteConstatar
   
     def initialize(attrs = {})
       Bravo::AuthData.fetch
