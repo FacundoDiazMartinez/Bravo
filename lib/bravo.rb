@@ -17,6 +17,7 @@ module Bravo
   autoload :AuthData,     "bravo/auth_data"
   autoload :Bill,         "bravo/bill"
   autoload :Constants,    "bravo/constants"
+  autoload :ComprobanteConstatar, "bravo/comprobante_constatar"
 
 
   extend self
