@@ -29,7 +29,7 @@ module Bravo
     
     def call_function
       set_body
-      response = client.call :comprobante_constatar do
+      response = @client.call :comprobante_constatar do
         message(@body)
       end
       return response
