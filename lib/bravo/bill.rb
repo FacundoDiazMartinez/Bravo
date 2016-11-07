@@ -30,22 +30,6 @@ module Bravo
       self.concepto   = attrs[:concepto]  || Bravo.default_concepto
       self.ivas = attrs[:ivas] || Array.new # [ 1, 100.00, 10.50 ], [ 2, 100.00, 21.00 ] 
     end
-    
-    def comprobante_constatar
-      namespaces_2 = {"xmlns" => "http://servicios1.afip.gob.ar/wscdc/"}
-      cliente = Savon.client(wsdl:  'https://wswhomo.afip.gov.ar/WSCDC/service.asmx?WSDL',
-                            namespaces: namespaces_2,
-                            ssl_verify_mode: :none,
-                            read_timeout: 90,
-                            open_timeout: 90)
-      body_2 = {"CmpReq" =>{cbte_modo: "CAE", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}
-      body.merge! body_2
-      
-      response = cliente.call :comprobante_constatar do 
-        message(body)
-      end
-      return response
-    end
 
     def cbte_type
       Bravo::BILL_TYPE[Bravo.own_iva_cond][iva_cond] ||
