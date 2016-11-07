@@ -18,11 +18,14 @@ module Bravo
         headers: { "Accept-Encoding" => "gzip, deflate", "Connection" => "Keep-Alive" }
       )
 
-      @body           = {:comprobante_constatar => {:auth => Bravo.auth_hash, "CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}}
-
     end
- 
+    
+    def set_body
+      @body = {:comprobante_constatar => {:auth => Bravo.auth_hash, "CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}}
+      return @body.to_xml
+    end
     def call_function
+      @body = set_body
       response = @client.call :comprobante_constatar do
         message(@body)
       end
