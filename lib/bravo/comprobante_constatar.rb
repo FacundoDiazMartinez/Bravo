@@ -4,7 +4,7 @@ module Bravo
     attr_accessor :body
   
     def initialize(attrs = {})
-      Bravo::AuthData.fetch
+      Bravo::AuthData.fetch('constatar')
       namespaces = {
         "xmlns" => "http://servicios1.afip.gob.ar/wscdc/"
         }
@@ -19,7 +19,7 @@ module Bravo
         open_timeout: 90,
         headers: { "Accept-Encoding" => "gzip, deflate", "Connection" => "Keep-Alive" }
       )
-      @body = {"Auth" => Bravo.auth_hash('constatar')}
+      @body = {"Auth" => Bravo.auth_hash}
 
     end
     
