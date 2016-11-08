@@ -38,7 +38,7 @@ module Bravo
     
     def comprobantes_modalidad_consultar
       response = client.call :comprobantes_modalidad_consultar do
-        message(body)
+        message({"Auth" => Bravo.auth_hash})
       end
       return response
     end
