@@ -28,10 +28,17 @@ module Bravo
       body.merge!(data_fields)
       return body
     end
-    def call_function
+    def comprobante_constatar
       body = set_body
       response = client.call :comprobante_constatar do
         message(body)
+      end
+      return response
+    end
+    
+    def comprobantes_modalidad_consultar
+      response = client.call :comprobantes_modalidad_consultar do
+        message(@body)
       end
       return response
     end
