@@ -19,7 +19,7 @@ module Bravo
         open_timeout: 90,
         headers: { "Accept-Encoding" => "gzip, deflate", "Connection" => "Keep-Alive" }
       )
-      @body = {"Auth" => Bravo.auth_hash}
+      @body = {"Auth" => Bravo.auth_hash('constatar')}
 
     end
     
