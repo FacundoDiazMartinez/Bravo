@@ -2,7 +2,7 @@ module Bravo
   class AuthData
 
     class << self
-      def fetch
+      def fetch(operation = nil)
         unless File.exists?(Bravo.pkey)
           raise "Archivo de llave privada no encontrado en #{Bravo.pkey}"
         end
@@ -12,16 +12,30 @@ module Bravo
         end
 
         #todays_datafile = "/tmp/bravo_#{Time.new.strftime('%d_%m_%Y')}.yml"
-        todays_datafile = Dir.pwd + "/tmp/bravo_#{Bravo.cuit}_#{Time.new.strftime('%d_%m_%Y')}.yml"
-        opts = "-u #{Bravo.auth_url}"
-        opts += " -k #{Bravo.pkey}"
-        opts += " -c #{Bravo.cert}" 
-        opts += " -a #{todays_datafile}"         
+        if operation.nil?
+          todays_datafile = Dir.pwd + "/tmp/bravo_#{Bravo.cuit}_#{Time.new.strftime('%d_%m_%Y')}.yml"
+          opts = "-u #{Bravo.auth_url}"
+          opts += " -k #{Bravo.pkey}"
+          opts += " -c #{Bravo.cert}" 
+          opts += " -a #{todays_datafile}"         
 
-        unless File.exists?(todays_datafile)
-          command = "#{File.dirname(__FILE__)}/../../wsaa-client.sh #{opts}"
-          Rails.logger.warn "Haciendo request a WSAA: " + command
-          %x(bash #{command} )
+          unless File.exists?(todays_datafile)
+            command = "#{File.dirname(__FILE__)}/../../wsaa-client.sh #{opts}"
+            Rails.logger.warn "Haciendo request a WSAA: " + command
+            %x(bash #{command} )
+          end
+        else
+          todays_datafile = Dir.pwd + "/tmp/bravo_constatar_#{Time.new.strftime('%d_%m_%Y')}.yml"
+          opts = "-u #{Bravo.auth_url}"
+          opts += " -k #{Bravo.pkey}"
+          opts += " -c #{Bravo.cert}" 
+          opts += " -a #{todays_datafile}"         
+
+          unless File.exists?(todays_datafile)
+            command = "#{File.dirname(__FILE__)}/../../wsaa-client-constatar.sh #{opts}"
+            Rails.logger.warn "Haciendo request a WSAA: " + command
+            %x(bash #{command} )
+          end
         end
 
         @data = YAML.load_file(todays_datafile).each do |k, v|
