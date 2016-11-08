@@ -21,7 +21,7 @@ module Bravo
     end
     
     def set_body
-      @body = {:comprobante_constatar => {"Auth" => Bravo.auth_hash, "CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}}
+      @body = {"Auth" => Bravo.auth_hash, "CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}
       return @body
     end
     def call_function
