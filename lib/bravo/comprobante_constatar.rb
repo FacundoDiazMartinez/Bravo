@@ -1,5 +1,7 @@
 module Bravo
   class ComprobanteConstatar
+    attr_reader :client
+    attr_accessor :body
   
     def initialize(attrs = {})
       Bravo::AuthData.fetch
@@ -17,17 +19,19 @@ module Bravo
         open_timeout: 90,
         headers: { "Accept-Encoding" => "gzip, deflate", "Connection" => "Keep-Alive" }
       )
+      @body = {"Auth" => Bravo.auth_hash}
 
     end
     
     def set_body
-      @body = {"Auth" => Bravo.auth_hash, "CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}
-      return @body
+      data_fields = {"CmpReq" => {cbte_modo: "CAI", cuit_emisor: "20267565393", pto_vta: 4002, cbte_tipo: 1, cbte_nro: 109, cbte_fch: "20131227", imp_total: "121.0" , cod_autorizacion: "63523178385550", doc_tipo_receptor: 80, doc_nro_receptor: "30628789661"}}
+      body.merge!(data_fields)
+      return body
     end
     def call_function
-      @body = set_body
-      response = @client.call :comprobante_constatar do
-        message(@body)
+      body = set_body
+      response = client.call :comprobante_constatar do
+        message(body)
       end
       return response
     end
