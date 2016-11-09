@@ -2,7 +2,7 @@ module Bravo
   class AuthData
 
     class << self
-      def fetch(operation = nil)
+      def fetch(operation)
         unless File.exists?(Bravo.pkey)
           raise "Archivo de llave privada no encontrado en #{Bravo.pkey}"
         end
@@ -12,7 +12,7 @@ module Bravo
         end
 
         #todays_datafile = "/tmp/bravo_#{Time.new.strftime('%d_%m_%Y')}.yml"
-        if operation.nil?
+        if operation == "wsfe"
           todays_datafile = Dir.pwd + "/tmp/bravo_#{Bravo.cuit}_#{Time.new.strftime('%d_%m_%Y')}.yml"
           opts = "-u #{Bravo.auth_url}"
           opts += " -k #{Bravo.pkey}"
