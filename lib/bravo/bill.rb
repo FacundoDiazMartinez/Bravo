@@ -6,7 +6,7 @@ module Bravo
                   :body, :response, :ivas
 
     def initialize(attrs = {})
-      Bravo::AuthData.fetch
+      Bravo::AuthData.fetch("wsfe")
       namespaces = {
         "xmlns" => "http://ar.gov.afip.dif.FEV1/"
         }
