@@ -4,17 +4,12 @@ module Bravo
     "01"=>"Factura A",
     "02"=>"Nota de Débito A",
     "03"=>"Nota de Crédito A",
-    "04"=>"Recibos A",
-    "05"=>"Notas de Venta al contado A",
     "06"=>"Factura B",
     "07"=>"Nota de Debito B",
     "08"=>"Nota de Credito B",
-    "09"=>"Recibos B",
-    "10"=>"Notas de Venta al contado B",
     "11"=>"Factura C",
     "12"=>"Nota de Debito C",
-    "13"=>"Nota de Credito C",
-    "14"=>"Recibos C",
+    "13"=>"Nota de Credito C"
   }
 
   CONCEPTOS = {"Productos"=>"01", "Servicios"=>"02", "Productos y Servicios"=>"03"}
