@@ -23,6 +23,8 @@ Si no dice "Invalid command", estamos bien. Caso contrario, descargar openssl y 
 <pre>./configure enable-cms
 make
 make install
+
+
 </pre>
 
 Nota 2: Ojo! Probablemente el openssl instalado originalmente sea el que se acceda por el path. Normalmente esto lo soluciona:
