@@ -33,7 +33,7 @@ Nota 2: Ojo! Probablemente el openssl instalado originalmente sea el que se acce
 mv SALIDA_DEL_WHEREIS SALIDA_DEL_WHEREIS_old
 ln -s /usr/local/ssl/bin/openssl SALIDA_DEL_WHEREIS
 </pre>
-
+ 
 h2. Configuraci&oacute;n
 
 Los servicios de AFIP requieren la utilizaci&oacute;n del Web Service de Autorizaci&oacute;n y Autenticaci&oacute;n ("wsaa readme":http://www.afip.gov.ar/ws/WSAA/README.txt)
