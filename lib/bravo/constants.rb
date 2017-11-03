@@ -46,4 +46,11 @@ module Bravo
       :nota_debito_c => "12"
     }
   }
+  
+  URLS = {
+    :test => { :wsaa => 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms',
+               :wsfe => 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL' },
+
+    :production => { :wsaa => 'https://wsaa.afip.gov.ar/ws/services/LoginCms',
+                     :wsfe => 'https://servicios1.afip.gov.ar/wsfev1/service.asmx' } }
 end
