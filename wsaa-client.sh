@@ -109,7 +109,7 @@ function ParseTA()
 if [ "$TOKEN" == "" ]
   then
     echo "ERROR: "
-    echo "$(echo "$RESPONSE" | xmllint --format - | grep faultstring)"
+    echo "$(echo "$RESPONSE" | grep faultstring)"
     exit 1
 fi
 }
